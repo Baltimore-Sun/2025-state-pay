@@ -1,0 +1,78 @@
+<html><head>
+  <title>2025 Maryland state government pay</title>
+
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width" />
+
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+  <link href="https://cdn.datatables.net/v/dt/dt-2.2.2/r-3.0.4/datatables.min.css" rel="stylesheet" integrity="sha384-gmZ5jterufNKMboaPX/+AZbRRbDF+z379XQUHv6DYWg2o8yTKtN/tMySXHexqf8y" crossorigin="anonymous">
+  <script src="https://cdn.datatables.net/v/dt/dt-2.2.2/r-3.0.4/datatables.min.js" integrity="sha384-340kE+RFFzUA/C9OCZW0VbqKLMOXLTO4/ZfWMEI/eBfwR1YuVsxZgZx/kobR4cbc" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/mlb5rgi.css">
+  <style>
+    body {
+        font-family: "droid-sans", sans-serif;
+        font-size: .91em;
+    }
+    #tbl25 {
+        font-family: "droid-sans", sans-serif;
+        font-size: .96em;
+    }
+    #dt-search-0 {
+        font-size: 16px;
+    }
+  </style>
+</head><body>
+<script>
+
+DataTable.ext.errMode = 'none';
+
+$(document).ready(function() {
+
+    new DataTable('#tbl25', {
+        ajax: 'https://raw.githubusercontent.com/Baltimore-Sun/2025-state-pay/main/rdrtbl.json',
+        scrollX: true,
+        order: [[3, 'desc']],
+        pageLength: 20,
+        responsive: true,
+        lengthChange: false,
+        layout: {
+            topStart: 'search',
+            topEnd: null,
+            bottomStart: 'info',
+            bottomEnd: 'paging'
+        },
+        columns: [
+            { data: 'Name' },
+            { data: 'Org' },
+            { data: 'Job' },
+            { data: 'Gross', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") },
+            { data: 'Salary', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") },
+            { data: 'Overtime', orderSequence: ['desc', 'asc'], render: $.fn.dataTable.render.number(",", ".", 0, "$") },
+            { data: 'Contractor' }
+        ]
+    });
+
+});
+
+</script>
+
+<table id="tbl25" class="display" style="font-family: 'Droid Sans', sans-serif; font-size: .96em;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Org</th>
+            <th>Job</th>
+            <th>Gross</th>
+            <th>Salary</th>
+            <th>Overtime</th>
+            <th>Contractor</th>
+        </tr>
+    </thead>
+</table>
+
+</body>
+</html>
